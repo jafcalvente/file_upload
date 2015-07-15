@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <p>Ruta del video: <%= privatePath %></p>
+
+    <button><a href='/fileUpload'>Volver</a></button>
+
+    <video src='<%= publicPath %>' width="320" height="240" controls/>
+
+  </body>
+</html>
+

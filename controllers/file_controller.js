@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 
 exports.index = function(req, res) {
 
@@ -7,26 +8,31 @@ exports.index = function(req, res) {
 
 exports.upload = function(req, res) {
 
-	var path = req.files.file.path;
-	console.log('Path:' + path);
+	var filePath = req.files.file.path;
+	var filename = filePath.substring(filePath.lastIndexOf('/') + 1, filePath.length);
+	console.log('Local path:' + filePath);
 
-	var filename = path.substring(path.lastIndexOf('/') + 1, path.length);
+	var tempFilePath = path.join(__dirname, '../public/uploads/') + filename;
+	console.log('Path:' + tempFilePath);
 
-	var newPath = '/Users/Jose/Desktop/files/' + filename;
-	console.log('Path:' + newPath);
-
-	var is = fs.createReadStream(path);
-	var os = fs.createWriteStream(newPath);
+	var is = fs.createReadStream(filePath);
+	var os = fs.createWriteStream(tempFilePath);
 
 	is.pipe(os);
 
 	is.on('end', function() {
 
 		// Eliminamos el archivo temporal
-		fs.unlinkSync(path);
+		fs.unlinkSync(filePath);
 	});
 
 	console.log('Archivo subido --------------------');
 
-	res.render('index', { title: 'Upload complete'});
+	var cloudFilePath = /uploads/ + filename;
+
+	res.render('play', { 
+		title: 'Upload complete',
+		privatePath: tempFilePath,
+		publicPath: cloudFilePath
+	});
 };
