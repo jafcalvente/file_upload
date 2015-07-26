@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>File Upload</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
+
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>File Upload</header>
 
-    <p>Ruta del video: <%= privatePath %></p>
+    <nav>
+      <button><a href='/fileUpload'>Inicio</a></button>
+    </nav>
 
-    <button><a href='/fileUpload'>Volver</a></button>
+    <p>Nombre del video: <%= name %></p>
 
     <video src='<%= publicPath %>' width="320" height="240" controls/>
-
   </body>
+
+  <footer>
+    <button><a href='https://github.com/jafcalvente/file_upload'>GitHub</a></button>
+  </footer>
 </html>
 

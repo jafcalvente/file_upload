@@ -9,5 +9,7 @@ router.get('/', function(req, res) {
 
 router.get('/fileUpload', fileController.index);
 router.post('/fileUpload', fileController.upload);
+router.get('/fileUpload/:fileId(\\d+)', fileController.play);
+router.get('/fileUpload/delete/:fileId(\\d+)', fileController.delete);
 
 module.exports = router;

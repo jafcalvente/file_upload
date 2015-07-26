@@ -29,3 +29,5 @@ node_modules
 *.sqlite
 .env
 *.mov
+*.mp4
+*.webm
